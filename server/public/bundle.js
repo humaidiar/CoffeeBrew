@@ -4716,7 +4716,7 @@ function AllCoffee() {
   const coffees = (0,_hooks_redux__WEBPACK_IMPORTED_MODULE_1__.useAppSelector)(state => state.coffeeReducer);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchSetCoffee)());
-  });
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
     className: "container",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -4795,7 +4795,9 @@ function AddMethodForm() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchAddCoffee)(coffeeMethod));
+      dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchAddCoffee)(coffeeMethod)).then(() => {
+        dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchSetCoffee)());
+      }).catch(err => err.message);
       setMethods({
         name: '',
         url: '',

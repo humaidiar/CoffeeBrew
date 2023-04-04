@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useAppDispatch } from '../hooks/redux'
-import { fetchAddCoffee } from '../actions/getCoffee'
+import { fetchAddCoffee, fetchSetCoffee } from '../actions/getCoffee'
 import { CoffeeData } from '../models/Coffee'
 import LoadingScreen from './LoadingScreen'
 
@@ -22,6 +22,10 @@ function AddMethodForm() {
     setTimeout(() => {
       setIsLoading(false)
       dispatch(fetchAddCoffee(coffeeMethod))
+        .then(() => {
+          dispatch(fetchSetCoffee())
+        })
+        .catch((err) => err.message)
       setMethods({ name: '', url: '', selftext: '' } as CoffeeData)
     }, 3000)
   }

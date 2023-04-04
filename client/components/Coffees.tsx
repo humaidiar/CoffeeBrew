@@ -10,7 +10,7 @@ export default function AllCoffee() {
 
   useEffect(() => {
     dispatch(fetchSetCoffee())
-  })
+  }, [])
 
   return (
     <section className="container">
