@@ -10,7 +10,9 @@ function AddMethodForm() {
   const [coffeeMethod, setMethods] = useState({} as CoffeeData)
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setMethods({ ...coffeeMethod, [e.target.id]: e.target.value })
   }
 
@@ -20,7 +22,7 @@ function AddMethodForm() {
     setTimeout(() => {
       setIsLoading(false)
       dispatch(fetchAddCoffee(coffeeMethod))
-      window.location.reload()
+      setMethods({ name: '', url: '', selftext: '' } as CoffeeData)
     }, 3000)
   }
 
@@ -33,6 +35,7 @@ function AddMethodForm() {
           name="name"
           id="name"
           type="text"
+          value={coffeeMethod.name}
           onChange={handleChange}
           placeholder="Your favorite brew method"
           required
@@ -42,6 +45,7 @@ function AddMethodForm() {
           name="url"
           id="url"
           type="text"
+          value={coffeeMethod.url}
           onChange={handleChange}
           placeholder="ex:'https://images....'"
           required
@@ -50,6 +54,7 @@ function AddMethodForm() {
         <textarea
           name="selftext"
           id="selftext"
+          value={coffeeMethod.selftext}
           className="text-input"
           onChange={handleChange}
           placeholder="Max 20 words"

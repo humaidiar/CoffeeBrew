@@ -4796,7 +4796,11 @@ function AddMethodForm() {
     setTimeout(() => {
       setIsLoading(false);
       dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchAddCoffee)(coffeeMethod));
-      window.location.reload();
+      setMethods({
+        name: '',
+        url: '',
+        selftext: ''
+      });
     }, 3000);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -4812,6 +4816,7 @@ function AddMethodForm() {
         name: "name",
         id: "name",
         type: "text",
+        value: coffeeMethod.name,
         onChange: handleChange,
         placeholder: "Your favorite brew method",
         required: true
@@ -4822,6 +4827,7 @@ function AddMethodForm() {
         name: "url",
         id: "url",
         type: "text",
+        value: coffeeMethod.url,
         onChange: handleChange,
         placeholder: "ex:'https://images....'",
         required: true
@@ -4831,6 +4837,7 @@ function AddMethodForm() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("textarea", {
         name: "selftext",
         id: "selftext",
+        value: coffeeMethod.selftext,
         className: "text-input",
         onChange: handleChange,
         placeholder: "Max 20 words",
